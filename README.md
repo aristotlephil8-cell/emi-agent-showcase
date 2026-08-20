@@ -1,5 +1,7 @@
 # EMI-Agent
 
+[![Verify](https://github.com/aristotlephil8-cell/emi-agent-showcase/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/aristotlephil8-cell/emi-agent-showcase/actions/workflows/verify.yml)
+
 Multi-Agent decision support for complex-equipment electromagnetic-interference
 (EMI) risk screening and anomaly attribution.
 
