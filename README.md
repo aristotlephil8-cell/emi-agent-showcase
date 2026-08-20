@@ -7,6 +7,20 @@ interference diagnosis.
 > EMI-Agent ranks candidate causes and verification actions. It does not replace
 > an EMC engineer and does not claim production or real-equipment validation.
 
+`Python` · `LangGraph` · `FastAPI` · `SQLite checkpoints` · `SSE` · `React`
+
+## Review this repository in three minutes
+
+| Question | Where to look | What is verifiable |
+| --- | --- | --- |
+| What does a run look like? | [Demo](#demo) | A single-page trace, evidence, review and engineer-decision flow |
+| What changed from baseline? | [Architecture](docs/ARCHITECTURE.md) | Parallel `Send` workers, stable operation IDs, checkpoint recovery and one targeted review round |
+| Did the changes improve anything, and what did they cost? | [Current evaluation snapshot](#current-evaluation-snapshot) | Raw-count paired metrics, cost distribution and Badcases |
+| Can the numbers be recomputed? | [Evaluation protocol](docs/EVALUATION.md) and [canonical trajectories](artifacts/runs/full-frozen-blind-v3-20260820-canonical.jsonl) | Frozen-data boundaries, provenance gates and the 72 exported records |
+
+For the claim boundary, data split and a concise review route, see
+[showcase guide](docs/SHOWCASE.md).
+
 ## Why this project
 
 Complex equipment diagnosis often fails for engineering reasons before it fails
@@ -49,6 +63,8 @@ engineer decision boundary.
 
 ![EMI-Agent fixture-mode desktop demo](docs/assets/emi-agent-desktop.png)
 
+![EMI-Agent fixture-mode mobile demo](docs/assets/emi-agent-mobile.png)
+
 The repository intentionally contains no private device data. All selectable
 cases are synthetic and their evaluator-only gold records are isolated from the
 runtime.
@@ -76,6 +92,17 @@ The UI uses the API at `http://127.0.0.1:8000` in development. Fixture mode is
 available for tests and UI demonstration without credentials. A live run reads
 `DASHSCOPE_API_KEY` from the process environment; no target `.env` is required
 or committed.
+
+## Repository map
+
+```text
+backend/        FastAPI API, LangGraph workflow, providers and checkpoint runtime
+frontend/       React/Vite single-page execution and evaluation view
+evaluation/     Frozen synthetic data, evaluator, provenance gates and scorer tests
+artifacts/runs/ Canonical exported trajectories used by the published snapshot
+docs/           Architecture, evaluation protocol, reviewer guide and UI captures
+scripts/        Local verification and synthetic-data maintenance utilities
+```
 
 ## Evaluation
 
@@ -130,6 +157,9 @@ canonical raw records are retained in
 ## Verification
 
 ```powershell
+./scripts/verify.ps1
+
+# Or run the main checks separately:
 cd backend
 uv run pytest
 
@@ -139,9 +169,9 @@ pnpm typecheck
 pnpm build
 ```
 
-Additional acceptance checks prove real parallel overlap, early SSE delivery,
-target-only Reviewer rework, and recovery from the same LangGraph thread in a
-new application instance.
+Additional backend and evaluation checks cover parallel overlap, early SSE
+delivery, target-only Reviewer rework, cross-instance checkpoint recovery,
+model-input leakage prevention, provenance and result re-aggregation.
 
 ## Scope and safety
 
