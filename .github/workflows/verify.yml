@@ -1,0 +1,49 @@
+name: Verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  backend-and-evaluation:
+    name: Backend and evaluation
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@v6
+      - name: Install locked backend dependencies
+        run: uv sync --locked --project backend
+      - name: Run backend tests
+        run: uv run --project backend pytest backend/tests
+      - name: Run evaluation tests and data validation
+        run: |
+          uv run --project backend python -m unittest discover -s evaluation/tests -v
+          uv run --project backend python -m evaluation.validate_data
+
+  frontend:
+    name: Frontend
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Enable pnpm via Corepack
+        run: corepack enable
+      - name: Install locked frontend dependencies
+        run: pnpm --dir frontend install --frozen-lockfile
+      - name: Run frontend checks
+        run: |
+          pnpm --dir frontend test:contract
+          pnpm --dir frontend lint
+          pnpm --dir frontend typecheck
+          pnpm --dir frontend build
