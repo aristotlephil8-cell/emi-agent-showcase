@@ -4,20 +4,12 @@ EMI-Agent is a decision-support demo for evidence-grounded electromagnetic
 interference diagnosis. It ranks candidate causes and proposes verification
 actions; an engineer remains responsible for the final decision.
 
-```mermaid
-flowchart LR
-    U[Case input] --> P[Planner Agent]
-    P --> R{Evidence router}
-    R -->|Send| E1[Evidence worker]
-    R -->|Send| E2[Evidence worker]
-    R -->|Send| E3[Evidence worker]
-    E1 --> D[Diagnosis Agent]
-    E2 --> D
-    E3 --> D
-    D --> V[Reviewer Agent]
-    V -->|targeted rework, at most once| R
-    V -->|accepted or human review needed| F[Deterministic report]
-```
+![EMI-Agent public V1 architecture](assets/emi-agent-architecture.svg)
+
+The diagram is derived from `backend/app/graph.py` (`route_parallel_evidence`,
+`route_after_review` and `build_optimized_graph`) and `backend/app/runtime.py`
+(`astream`, SQLite checkpoint setup and SSE envelopes). It depicts public V1's
+at-most-one targeted rework policy, not the broader résumé project protocol.
 
 ## Runtime invariants
 
@@ -52,4 +44,3 @@ This development version excludes RAG, authentication, multi-user deployment,
 vector databases, arbitrary code execution, cancellation, and SSE history
 replay. Those capabilities are not required to demonstrate the four Agent
 mechanisms and would weaken same-day reproducibility.
-

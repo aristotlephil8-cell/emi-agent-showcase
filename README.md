@@ -2,95 +2,62 @@
 
 [![Verify](https://github.com/aristotlephil8-cell/emi-agent-showcase/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/aristotlephil8-cell/emi-agent-showcase/actions/workflows/verify.yml)
 
-Multi-Agent decision support for complex-equipment electromagnetic-interference
-(EMI) risk screening and anomaly attribution.
+[简体中文](README.md) | [English](README.en.md)
 
-> **RESUME PROJECT SCOPE · SYNTHETIC / PUBLIC DATA ONLY · HUMAN DECISION REQUIRED**
-> The system decomposes an engineering question, collects evidence, reviews
-> conflicts and produces a traceable decision-support report. An EMC engineer
-> remains responsible for the final conclusion.
+面向复杂设备 EMI 风险筛查与异常归因的多 Agent 辅助决策系统。
+
+> **简历项目口径 · 仅使用公开/合成数据 · 结论必须由工程师确认**
+>
+> 系统负责拆解工程问题、收集证据、审查冲突并生成可追溯的决策支持报告；最终 EMC 判断由工程师负责。
 
 `Python` · `LangGraph` · `FastAPI` · `SQLite checkpoints` · `SSE` · `React`
 
-## Candidate contribution
+## 个人贡献
 
-**Core developer · national research-project subtask · 2024.10–2026.03**
+**核心开发｜国家级科研项目子课题｜2024.10–2026.03**
 
-1. **Dynamic task planning.** Used LangGraph to turn a request into goals,
-   information gaps, execution steps, dependencies and completion conditions;
-   added plan validation, conditional replanning and controlled termination.
-2. **Agent orchestration and recovery.** Orchestrated control, evidence,
-   analysis and review Agents through shared state, serial/parallel branches and
-   conditional routes; added checkpoints, idempotency, timeout retry and
-   interruption recovery.
-3. **Review feedback and targeted rerun.** Structured evidence gaps,
-   conflicts and analysis errors as review feedback, then routed only the
-   affected Agent for rerun with a bounded review cycle.
+1. **动态任务规划。** 基于 LangGraph 将需求拆分为目标、信息缺口、执行步骤、依赖关系与完成条件；加入计划校验、条件重规划和受控终止。
+2. **Agent 编排与恢复。** 通过共享状态编排主控、证据、分析与审查 Agent，支持串行、并行和条件分支；加入 Checkpoint、幂等、超时重试与中断恢复。
+3. **审查反馈与定向重执行。** 将证据缺口、证据冲突和分析错误结构化为审查反馈，只把相关 Agent 路由至返工路径，并限制重执行轮次。
 
-## Resume evaluation highlights
+## 简历评测亮点
 
-The following project-level outcomes use the candidate's résumé evaluation
-scope: **40 public/synthetic cases and 120 repeated runs**. They are the
-headline metrics for this project; they are not substituted with the smaller
-public V1 regression bundle committed below.
+以下项目级结果采用简历中的评测口径：**40 个公开/合成案例、120 次重复运行**。它们是本项目的主展示指标，不以仓库中较小的公开 V1 回归包替代。
 
-| Evaluation dimension | Baseline | Optimized |
+| 评测维度 | 优化前 | 优化后 |
 | --- | ---: | ---: |
-| Plan executable rate | 73.3% | 90.8% |
-| Invalid-step rate | 17.0% | 6.6% |
-| Task completion rate | 75.8% | 89.2% |
-| Fault recovery rate (60 injections) | 43.3% | 85.0% |
-| Unsupported atomic claims (280 annotated per profile) | 20.7% | 7.5% |
+| 计划可执行率 | 73.3% | 90.8% |
+| 无效步骤率 | 17.0% | 6.6% |
+| 任务完成率 | 75.8% | 89.2% |
+| 故障恢复率（60 次注入） | 43.3% | 85.0% |
+| 无证据支持的原子主张（每个版本标注 280 组） | 20.7% | 7.5% |
 
-These results describe the résumé project evaluation. They do not claim
-production validation, real-device deployment, expert endorsement or automatic
-engineering decisions.
+这些指标描述的是简历项目评测，不代表生产验证、真实设备部署、专家背书或自动化工程决策。
 
-## Review this repository in three minutes
+## 3 分钟了解仓库
 
-| Question | Where to look | What is inspectable |
+| 问题 | 入口 | 可检查内容 |
 | --- | --- | --- |
-| What does the system do? | [System flow](#system-flow) | Planner, parallel evidence collection, diagnosis, review and human confirmation |
-| What did the candidate build? | [Candidate contribution](#candidate-contribution) | Planning, stateful orchestration/recovery and targeted review feedback |
-| How does the public V1 behave? | [Public V1 regression evidence](#public-v1-regression-evidence) | Frozen data, raw trajectories, Badcases and strict provenance labels |
-| Can I run the checks? | [Verification](#verification) | Locked Python/Node dependencies and the same local checks used by CI |
+| 系统如何工作？ | [系统流程](#系统流程) | 规划、并行取证、诊断、审查与人工确认 |
+| 个人具体负责什么？ | [个人贡献](#个人贡献) | 规划、带状态编排/恢复与定向审查反馈 |
+| 公开 V1 的代码证据是什么？ | [公开 V1 回归证据](#公开-v1-回归证据) | 冻结数据、原始轨迹、Badcase 与严格来源标签 |
+| 如何复现检查？ | [验证](#验证) | 锁定的 Python/Node 依赖与同 CI 的检查项 |
 
-For the claim boundary, data split and a concise review route, see
-[showcase guide](docs/SHOWCASE.md).
+关于证据边界与面试阅读路径，参见 [展示说明](docs/SHOWCASE.md)。
 
-## System flow
+## 系统流程
 
-```mermaid
-flowchart LR
-    I[EMI case] --> P[Planner Agent]
-    P --> R{Evidence router}
-    R --> E1[Evidence worker]
-    R --> E2[Evidence worker]
-    R --> E3[Evidence worker]
-    E1 --> D[Diagnosis Agent]
-    E2 --> D
-    E3 --> D
-    D --> V[Reviewer Agent]
-    V -->|targeted rework| R
-    V --> F[Decision-support report]
-    F --> H[Engineer confirmation]
-```
+![EMI-Agent public V1 architecture](docs/assets/emi-agent-architecture.svg)
 
-The API executes the compiled LangGraph through `astream`; there is no manual
-orchestration fallback. See [architecture details](docs/ARCHITECTURE.md).
+该图直接映射编译后的执行图：`Planner → Router → Send workers → Diagnosis → Reviewer → Reporter → Engineer`。公开 V1 通过 `astream` 执行，不存在手写编排 fallback。详见 [架构说明](docs/ARCHITECTURE.md)。
 
-## Local walkthrough
+## 本地演示
 
-The React page renders the active Agent DAG, SSE trajectory, tool-backed
-evidence and counter-evidence, ranked candidate causes, review issues and an
-engineer decision boundary. The repository intentionally keeps this page as a
-local runnable demo rather than claiming an online service or filling the
-README with static screenshots.
+React 页面会展示 Agent DAG、SSE 轨迹、工具证据与反证、候选根因、审查问题和工程师决策边界。仓库将其保留为可本地运行的演示，不宣称在线服务，也不在 README 堆叠静态截图。
 
-## Quick start
+## 快速启动
 
-Requirements: Python 3.12, [uv](https://docs.astral.sh/uv/), Node.js 22.13+ and
-[pnpm](https://pnpm.io/).
+要求：Python 3.12、[uv](https://docs.astral.sh/uv/)、Node.js 22.13+ 与 [pnpm](https://pnpm.io/)。
 
 ```powershell
 cd backend
@@ -98,7 +65,7 @@ uv sync --locked
 uv run uvicorn app.main:app --reload --port 8000
 ```
 
-In a second terminal:
+在另一个终端中：
 
 ```powershell
 cd frontend
@@ -106,69 +73,39 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-The UI uses the API at `http://127.0.0.1:8000` in development. Fixture mode is
-available for tests and UI demonstration without credentials. A live run reads
-`DASHSCOPE_API_KEY` from the process environment; no target `.env` is required
-or committed.
+开发环境下前端使用 `http://127.0.0.1:8000` API。fixture 模式不需要凭据，可用于测试和界面演示；真实运行只从当前进程环境读取 `DASHSCOPE_API_KEY`，不会提交目标 `.env`。
 
-## Repository map
+## 仓库结构
 
 ```text
-backend/        FastAPI API, LangGraph workflow, providers and checkpoint runtime
-frontend/       React/Vite single-page execution and evaluation view
-evaluation/     Frozen synthetic data, evaluator, provenance gates and scorer tests
-artifacts/runs/ Canonical exported trajectories used by the published snapshot
-docs/           Architecture, evaluation protocol and interviewer guide
-scripts/        Local verification and synthetic-data maintenance utilities
+backend/        FastAPI API、LangGraph 工作流、Provider 与 checkpoint 运行时
+frontend/       React/Vite 单页执行与评测视图
+evaluation/     冻结合成数据、评分器、来源门禁与测试
+artifacts/runs/ 公开 V1 快照使用的规范化轨迹
+docs/           架构、评测协议与面试阅读说明
+scripts/        本地验证与合成数据维护工具
 ```
 
-## Public V1 regression evidence
+## 公开 V1 回归证据
 
-The committed V1 bundle is a **separate, smaller engineering-regression
-protocol**: 24 frozen synthetic cases, 48 credentialed live normal trajectories
-and 24 deterministic replay fault trajectories. It checks the public workflow,
-provenance, recovery proof and evaluator contracts; it is not presented as a
-reproduction of the résumé's 40-case / 120-run evaluation.
+仓库提交的 V1 是一套**独立且更小的工程回归协议**：24 条冻结合成案例、48 条带凭据的正常 live 轨迹，以及 24 条确定性故障回放轨迹。它验证公开工作流、来源、恢复证明与评分器契约；不被描述为对简历 40 案例/120 次运行评测的复现。
 
-The public V1 intentionally permits at most one targeted review rework to make
-its trajectory contract deterministic. The résumé project used a bounded
-multi-round policy of up to three reruns. Do not combine the metrics of these
-two protocols.
+为保证轨迹契约可控，公开 V1 最多允许一轮定向返工；简历项目使用最多三轮的受限返工策略。两套协议的分子、分母和百分比不能合并。
 
-Public V1 artifacts are labeled `DEVELOPMENT_V1`,
-`LIVE_SYNTHETIC_SINGLE_RUN`, `DETERMINISTIC_REPLAY_FAULT_INJECTION` and
-`NOT_EXPERT_VALIDATED`. The source-specific [evaluation protocol](docs/EVALUATION.md),
-[summary.json](evaluation/results/summary.json), [Badcase report](evaluation/results/badcases.md)
-and [72 canonical trajectories](artifacts/runs/full-frozen-blind-v3-20260820-canonical.jsonl)
-remain available for code-level inspection.
+公开 V1 工件使用 `DEVELOPMENT_V1`、`LIVE_SYNTHETIC_SINGLE_RUN`、`DETERMINISTIC_REPLAY_FAULT_INJECTION` 与 `NOT_EXPERT_VALIDATED` 标签。可继续检查 [评测协议](docs/EVALUATION.md)、[summary.json](evaluation/results/summary.json)、[Badcase 报告](evaluation/results/badcases.md) 与 [72 条规范化轨迹](artifacts/runs/full-frozen-blind-v3-20260820-canonical.jsonl)。
 
-## Verification
+## 验证
 
 ```powershell
 ./scripts/verify.ps1
-
-# Or run the main checks separately:
-cd backend
-uv run pytest
-
-cd ..\frontend
-pnpm lint
-pnpm typecheck
-pnpm build
 ```
 
-The local command and GitHub Actions run locked dependencies and cover backend
-tests, frozen-data validation, evaluator tests, frontend contract tests, lint,
-typecheck and production build. The workflow has no credentials and does not
-run live model calls.
+本地命令与 GitHub Actions 使用锁定依赖，覆盖后端测试、冻结数据校验、评分器测试、前端 contract、lint、typecheck 和生产构建。工作流不使用任何凭据，也不会调用真实模型。
 
-## Scope and safety
+## 范围与安全边界
 
-This public showcase excludes private device data, RAG, authentication,
-multi-user deployment, vector databases, arbitrary code execution, cancellation
-and SSE history replay. Evidence tools are read-only and allowlisted. Unresolved
-critical issues produce `needs_human_review` rather than a forced conclusion.
+公开展示版不包含私有设备数据、RAG、认证、多用户部署、向量数据库、任意代码执行、取消或 SSE 历史回放。证据工具均为只读白名单工具；严重问题未解决时会输出 `needs_human_review`，而不是强行给出结论。
 
-## License
+## 许可证
 
 [MIT](LICENSE)
