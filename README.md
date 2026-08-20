@@ -87,7 +87,7 @@ README with static screenshots.
 
 ## Quick start
 
-Requirements: Python 3.12, [uv](https://docs.astral.sh/uv/), Node.js 20+ and
+Requirements: Python 3.12, [uv](https://docs.astral.sh/uv/), Node.js 22.13+ and
 [pnpm](https://pnpm.io/).
 
 ```powershell
