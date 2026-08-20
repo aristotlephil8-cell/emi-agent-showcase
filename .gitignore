@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+
+# Node
+node_modules/
+dist/
+.pnpm-store/
+
+# Local runtime and credentials
+.runtime/
+.env
+.env.*
+backend/.env
+!.env.example
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Evaluation working material. Keep only the current canonical v3 raw bundle
+# under artifacts/runs/; historical, development and provider-recording files
+# stay local and are never silently deleted.
+artifacts/runs/dev-*.jsonl
+artifacts/runs/*-v1-*
+artifacts/runs/*-v2-*
+artifacts/runs/live-frozen-*.jsonl
+artifacts/runs/fault-frozen-*.jsonl
+artifacts/runs/*recordings*.jsonl
+artifacts/runs/*canonicalization*.json
+artifacts/runs/full-frozen-20260820-1729-*.jsonl

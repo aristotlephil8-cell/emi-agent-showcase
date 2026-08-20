@@ -1,0 +1,199 @@
+{
+  "complete": true,
+  "generated_at": "2026-08-20T14:35:14.313531+00:00",
+  "labels": [
+    "DEVELOPMENT_V1",
+    "LIVE_SYNTHETIC_SINGLE_RUN",
+    "DETERMINISTIC_REPLAY_FAULT_INJECTION",
+    "NOT_EXPERT_VALIDATED"
+  ],
+  "mode": "publish",
+  "official_dataset_sha256": {
+    "cases": "bf8f07e3379d171ce0ac98b380dacef9c5597677eb74a0b444772632ebb22634",
+    "gold": "79fce0ff7619e3f679d796531ca9675fe1909ff56484a6cd0f132dd000c371d7",
+    "overlays": "fafe4a9a3902b2b8999cd339680deb16f2f2a9e4adcca4b4a3383858e79dd7f7"
+  },
+  "official_record_content_sha256": {
+    "cases": "9ea51a8dc3f05e232acac92c0be400f7302750795d6f6143797fe0438b9ba70a",
+    "gold": "abf0b733e9acb813f73f3b08cb1e672380706a6a66423f8614b0b15e498a229d",
+    "overlays": "67795aa6ce37d793f11718152eb3bab223d2b6a095094e660fd1583b1bb0a69f"
+  },
+  "path_policy": "hashes_and_basenames_only_no_absolute_paths",
+  "provenance": {
+    "actual_models": [
+      "qwen3.7-plus-2026-05-26"
+    ],
+    "config_hashes": [
+      "6599661cf1f7e0ef11b2ae717016574aedff45bbba7699f58de0fdd06f7c54c5",
+      "6d38137edca08c5c3fad253f828e729ba6f43fe554632f546397fe2386081fd8"
+    ],
+    "data_hashes": [
+      "0190147397dbbb0daaa50f03de54b09ed5042642e88387839c2ea29dbfe8ddcb",
+      "043a869cdae2e26c0a4c9789695df7d8a04b38fa9672de650360f735e995ef59",
+      "0d4c9d1c259731b54a00833fc4d8b5b872e2fe73116b64887c656d2c566e5386",
+      "20a7a7d81d8a847097546d449ea0a175333c61ad6f38725f4ace92670a3df550",
+      "2272de9be8d69f819e495013b8047bd87f26bc062cd114b555d848edf29b08db",
+      "4210c8d79b15e29ba27e3492a36caa702613c2a7b66f15a0f3b8f8a500490a81",
+      "4f926bbb1da361022acd42b4a5227a362cc5e22411e96191c93c760bd09f5ef6",
+      "5f71265a7bae993d6a0b0b6ef1879795912b6a54873e06c14471b3004576a217",
+      "60be26592996813492d03ddb600b8975c49bcad1fed5ddad13cc7742f29ea493",
+      "70dfbbbf5b984be3abf9a3a57de141fee30e7c19b5424a9908f09b3a3da446e0",
+      "7280b42eec1ed886d19de0f2f91b04b3c337086fbba8ec56122950571a844998",
+      "7506995d73fde3481136c32d55bc8307bdaeb5e45f1e01f1d17e5f2559514800",
+      "7b8dc998b78be3f7796fc69e3c345a62f14675c09da53b3e81e11f784b7bfb4e",
+      "8c06fcfc0fb6d17405794e822949d47aaeefa58ad0413de27a6e730f6d35f1d0",
+      "a01db155d43ae1a14a05ef131a6ed47f5d35c49027a74fd0e35221778fde8a25",
+      "a2e370d0d9e3a4a4488a748fa0e28abd906bfa6e0cce9763fbc99e224c471fcb",
+      "c770425eece4f193cf2dbdef1305959a17a458c3ea4fd417a4bdc896a1a5fb02",
+      "c9ca176df1853c1ba66510db332a3bfadc0af06c08d385b60946ba8c369aba33",
+      "cbb2cff81e9721be9f8767ec3f00ef85072eb10d972cc55212c9c949645618a7",
+      "d37633550a27501f382a29989353a3ff5ea0672cf1d7b53386fa1ec2b7c29188",
+      "e0aa490e11cbf279d720b13100950bbf9867ae686b86e48daba678f9cb093695",
+      "ece88c6087eb7ee189dc118be8b6f4287bba3a4df848b7a103e4cffa5788c05f",
+      "fb070cd229e84d8c2cf5ea7018a6f62ac5829bc2be1b7f263e6d6fad3d7fa031",
+      "ff0440368f3c3f46a834df09a84f8ebea9341ba42a69ce10841372eb51e17718"
+    ],
+    "execution_modes": [
+      "live",
+      "replay"
+    ],
+    "fallback_reasons": [],
+    "models": [
+      "qwen3.7-plus-2026-05-26"
+    ],
+    "prompt_hashes": {
+      "diagnosis": [
+        "4da011a4ed1bfa689d369d51024d93dc21be0d0ed6c5a3da9fc364b331af7613"
+      ],
+      "evidence": [
+        "bc092365d420ae4423c510b2103d810ef5e545b8f553f54a8c525d98c1ba5877"
+      ],
+      "planner": [
+        "24346aaf198a96fb0c48fd826d586e878ff4b49c0306758560dde710dddb133a"
+      ],
+      "reviewer": [
+        "875a85003f6596c4b9eac66caca84cc131a94397caff8a93f88d88f545d76a85"
+      ]
+    },
+    "providers": [
+      "dashscope"
+    ],
+    "requested_models": [
+      "qwen3.7-plus-2026-05-26"
+    ],
+    "run_ids": [
+      "evaluation-03035c0f-a1b7-4adb-aac0-96402ae956fb",
+      "evaluation-06d236f1-6873-4c1d-97c9-cc24d7b1a428",
+      "evaluation-0708892c-0ea2-4c38-aabc-c82283bfefa3",
+      "evaluation-0a620956-9b79-4fd7-896c-8791c84d3bdf",
+      "evaluation-10a9c9ad-415d-483d-a48b-904c33eb36a2",
+      "evaluation-12727084-2e0e-4ac2-93db-f68657a21aaa",
+      "evaluation-1593acf0-f53b-4463-9755-e219678256e7",
+      "evaluation-1f8c6a50-03c0-41af-9ed2-ecfae178d84a",
+      "evaluation-1fc4a391-329e-45de-8f9f-78a0ac05d0c1",
+      "evaluation-25019725-731a-4739-9dab-af1278eb0c21",
+      "evaluation-27abf437-ed20-4ee9-80fa-e0f16fe22f69",
+      "evaluation-2c55d359-fe2d-4c91-8022-d40044a34341",
+      "evaluation-2f818876-3fbe-4925-8157-2cad862acdb9",
+      "evaluation-34230555-2e22-4aa5-8299-a7c51e98df8a",
+      "evaluation-3ecd5699-779f-4ea7-af64-cb5aa8e667ca",
+      "evaluation-4293583f-bcce-4935-963b-c890588bdd54",
+      "evaluation-4530b734-99cd-4921-91a4-a76c19d2d131",
+      "evaluation-481b39aa-d48a-43b7-8049-54974b5e9a91",
+      "evaluation-4ac450e3-2687-44c0-a9f6-0083efed802c",
+      "evaluation-54886d0d-68e7-4a54-a124-9cc40b7bdfb0",
+      "evaluation-5b2f1544-3449-4011-b1fa-3b1af4f263f5",
+      "evaluation-5e3a1007-c4e2-4d13-ad90-c88f6aa24b15",
+      "evaluation-6f0cb529-21fa-4e1f-998e-b16cc68390aa",
+      "evaluation-70259559-777c-4794-a713-e6c4279a7042",
+      "evaluation-7b1b9738-b93e-4cb8-9124-916cd9dd76a4",
+      "evaluation-7ca88a08-3b45-411d-992d-5af0e7929723",
+      "evaluation-7f5bf172-7a37-483a-8650-e951cbb96682",
+      "evaluation-7fa30cf2-8f7d-4d65-9928-74fb7c324933",
+      "evaluation-836d3127-6362-4dfb-94df-e90fdb71edae",
+      "evaluation-8dba14b3-1742-4ca8-b5fa-337de5871fe4",
+      "evaluation-a2912265-9d47-4368-8233-8e7cb1de7b0e",
+      "evaluation-a6a59be8-182c-4b31-a19e-b290f3e7ad77",
+      "evaluation-b0e52040-caf8-4c35-977d-9f012b4b9f5e",
+      "evaluation-b3b0ff02-0272-49e7-b17f-1117459ee95c",
+      "evaluation-b449726b-0995-4845-80f9-1ad0783674b4",
+      "evaluation-b8bcaf2b-0ce3-4bbd-8fe0-ae45fd34a948",
+      "evaluation-bb74e642-6dd9-4306-a08d-9e7d1bd00df3",
+      "evaluation-bd561838-656c-45c2-a940-d4c91d2d013b",
+      "evaluation-c3f9f273-bb7b-460c-9cd8-29e91de6ddde",
+      "evaluation-c61ecbec-475f-425e-b3cf-1742829333b8",
+      "evaluation-c8d651f2-cf41-4d93-8ef7-e8b1c1620ec1",
+      "evaluation-cd860500-0804-441e-9459-fe75bdbf0ebb",
+      "evaluation-d6d3a6a5-46d0-40dd-a2bd-ffcc8a91e391",
+      "evaluation-e29a82d8-6c2c-4273-9822-e85fe91192c9",
+      "evaluation-eadc7058-02ad-4c62-bdb3-cadd6ee1db9b",
+      "evaluation-ed72a24f-d32e-4908-91db-e42b02c89642",
+      "evaluation-ef38c9ff-b5f3-4c04-9d33-9959d327d9c6",
+      "evaluation-fa925d70-83fa-42cb-be7a-0f63a88421ba",
+      "fault-FAULT-001-baseline-fe854e92-878c-47a9-a5e8-5c0c56111fad",
+      "fault-FAULT-001-optimized-9dc4785b-b42c-47f9-94d4-7037d105cde8",
+      "fault-FAULT-002-baseline-9fdd721a-94e9-4e71-95e8-941785a176db",
+      "fault-FAULT-002-optimized-3ab751b6-8cf8-4039-abc3-0a0c769a7529",
+      "fault-FAULT-003-baseline-a812370c-cfc9-4086-acba-d471368769b5",
+      "fault-FAULT-003-optimized-9af6a58e-9a10-49c2-be1d-b51cafcf943f",
+      "fault-FAULT-004-baseline-11eb1657-8587-4614-aef3-2c7860e841e1",
+      "fault-FAULT-004-optimized-46e7e24c-11d0-4877-9b00-ae1b9463a4fb",
+      "fault-FAULT-005-baseline-ad004979-f36d-4e32-86d4-7596abc1bd68",
+      "fault-FAULT-005-optimized-5fd3391d-66cd-48b2-826b-f569ea4094f8",
+      "fault-FAULT-006-baseline-4784d34d-ad82-44cc-91ea-d68379d103ed",
+      "fault-FAULT-006-optimized-63cb439c-d646-4537-a3a0-b33e4598f9ba",
+      "fault-FAULT-007-baseline-cd7c3d35-e135-4acf-9212-01211e9e6a34",
+      "fault-FAULT-007-optimized-4b3bd7e2-896b-4242-9b09-201a74886c13",
+      "fault-FAULT-008-baseline-e9dbca76-c939-44e8-af1c-2001be0324f2",
+      "fault-FAULT-008-optimized-fdbf9761-be18-4b38-8ac9-c4c0fbf47d5a",
+      "fault-FAULT-009-baseline-9dc10421-1d01-47c3-9d3f-f362976667ec",
+      "fault-FAULT-009-optimized-ccb35500-4ac7-4613-a9de-e4de0e518625",
+      "fault-FAULT-010-baseline-d65a9dd4-c35d-4ddf-97b7-945ac19ddee8",
+      "fault-FAULT-010-optimized-72dd4369-3715-4298-a329-4f324f19cc3a",
+      "fault-FAULT-011-baseline-0791016b-62fb-4963-ba86-05af1084ba41",
+      "fault-FAULT-011-optimized-46600a5b-2650-4d5f-8eca-948b11303445",
+      "fault-FAULT-012-baseline-944c1982-4e57-4eb0-bccf-5ffb6a1f11ce",
+      "fault-FAULT-012-optimized-76ab044a-55fb-44fd-b0b2-25d2dddfb713"
+    ],
+    "source_run_ids": [
+      "evaluation-03035c0f-a1b7-4adb-aac0-96402ae956fb",
+      "evaluation-0708892c-0ea2-4c38-aabc-c82283bfefa3",
+      "evaluation-10a9c9ad-415d-483d-a48b-904c33eb36a2",
+      "evaluation-1593acf0-f53b-4463-9755-e219678256e7",
+      "evaluation-1f8c6a50-03c0-41af-9ed2-ecfae178d84a",
+      "evaluation-2c55d359-fe2d-4c91-8022-d40044a34341",
+      "evaluation-2f818876-3fbe-4925-8157-2cad862acdb9",
+      "evaluation-4293583f-bcce-4935-963b-c890588bdd54",
+      "evaluation-481b39aa-d48a-43b7-8049-54974b5e9a91",
+      "evaluation-5b2f1544-3449-4011-b1fa-3b1af4f263f5",
+      "evaluation-6f0cb529-21fa-4e1f-998e-b16cc68390aa",
+      "evaluation-70259559-777c-4794-a713-e6c4279a7042",
+      "evaluation-7f5bf172-7a37-483a-8650-e951cbb96682",
+      "evaluation-7fa30cf2-8f7d-4d65-9928-74fb7c324933",
+      "evaluation-836d3127-6362-4dfb-94df-e90fdb71edae",
+      "evaluation-8dba14b3-1742-4ca8-b5fa-337de5871fe4",
+      "evaluation-a2912265-9d47-4368-8233-8e7cb1de7b0e",
+      "evaluation-a6a59be8-182c-4b31-a19e-b290f3e7ad77",
+      "evaluation-b0e52040-caf8-4c35-977d-9f012b4b9f5e",
+      "evaluation-b3b0ff02-0272-49e7-b17f-1117459ee95c",
+      "evaluation-b449726b-0995-4845-80f9-1ad0783674b4",
+      "evaluation-b8bcaf2b-0ce3-4bbd-8fe0-ae45fd34a948",
+      "evaluation-bd561838-656c-45c2-a940-d4c91d2d013b",
+      "evaluation-fa925d70-83fa-42cb-be7a-0f63a88421ba"
+    ]
+  },
+  "record_counts": {
+    "evaluation_runs": 48,
+    "fault_injection_runs": 24,
+    "runs": 72
+  },
+  "run_data_hash_semantics": "sha256_of_each_case_canonical_json_object",
+  "schema_version": "2.0",
+  "scorer_version": "2.1.0",
+  "sha256": {
+    "cases.jsonl": "bf8f07e3379d171ce0ac98b380dacef9c5597677eb74a0b444772632ebb22634",
+    "gold.jsonl": "79fce0ff7619e3f679d796531ca9675fe1909ff56484a6cd0f132dd000c371d7",
+    "overlays.jsonl": "fafe4a9a3902b2b8999cd339680deb16f2f2a9e4adcca4b4a3383858e79dd7f7",
+    "runs.jsonl": "fca062914bbbfc284f8797b25f3ea025dd435aad11a54267f428605ce96dc573"
+  }
+}

@@ -1,0 +1,213 @@
+{
+  "complete": true,
+  "evidence_labels": {
+    "fault_runs": [
+      "DEVELOPMENT_V1",
+      "DETERMINISTIC_REPLAY_FAULT_INJECTION",
+      "NOT_EXPERT_VALIDATED"
+    ],
+    "normal_runs": [
+      "DEVELOPMENT_V1",
+      "LIVE_SYNTHETIC_SINGLE_RUN",
+      "NOT_EXPERT_VALIDATED"
+    ]
+  },
+  "expected": {
+    "cases": 24,
+    "fault_overlays": 12,
+    "fault_runs_per_variant": 12,
+    "normal_runs_per_variant": 24
+  },
+  "labels": [
+    "DEVELOPMENT_V1",
+    "LIVE_SYNTHETIC_SINGLE_RUN",
+    "DETERMINISTIC_REPLAY_FAULT_INJECTION",
+    "NOT_EXPERT_VALIDATED"
+  ],
+  "methodology": {
+    "fault_runs": "deterministic_replay_fault_injection",
+    "normal_runs": "live_synthetic_single_run",
+    "plan_executable_scope": "agent_choices_plus_shared_deterministic_argument_binding"
+  },
+  "mode": "publish",
+  "schema_version": "2.0",
+  "scorer_version": "2.1.0",
+  "variants": {
+    "baseline": {
+      "cost": {
+        "input_tokens": {
+          "count": 24,
+          "max": 3443.0,
+          "mean": 3218.583,
+          "median": 3327.0,
+          "min": 2647.0,
+          "range": 796.0,
+          "total": 77246.0
+        },
+        "latency_ms": {
+          "count": 24,
+          "max": 45947.88,
+          "mean": 35381.519,
+          "median": 34075.25,
+          "min": 26049.099,
+          "range": 19898.781,
+          "total": 849156.449
+        },
+        "model_calls": {
+          "count": 24,
+          "max": 6.0,
+          "mean": 5.792,
+          "median": 6.0,
+          "min": 5.0,
+          "range": 1.0,
+          "total": 139.0
+        },
+        "output_tokens": {
+          "count": 24,
+          "max": 1556.0,
+          "mean": 1258.208,
+          "median": 1239.5,
+          "min": 954.0,
+          "range": 602.0,
+          "total": 30197.0
+        }
+      },
+      "expected_normal_runs": 24,
+      "fault_recovery_rate": {
+        "denominator": 12,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "faults_triggered": {
+        "denominator": 12,
+        "numerator": 8,
+        "value": 0.666667
+      },
+      "invalid_step_rate_macro": {
+        "denominator": 24,
+        "numerator": 0.0,
+        "numerator_semantics": "sum_of_per_case_invalid_step_rates",
+        "value": 0.0
+      },
+      "invalid_step_rate_micro": {
+        "denominator": 91,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "observed_normal_runs": 24,
+      "plan_executable_rate": {
+        "denominator": 24,
+        "numerator": 18,
+        "value": 0.75
+      },
+      "reviewer_resolution_rate": {
+        "denominator": 4,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "task_completion_rate": {
+        "denominator": 24,
+        "numerator": 13,
+        "value": 0.541667
+      },
+      "top1_root_cause_hit_rate": {
+        "denominator": 24,
+        "numerator": 23,
+        "value": 0.958333
+      },
+      "unsupported_or_contradicted_claim_rate": {
+        "denominator": 56,
+        "numerator": 1,
+        "value": 0.017857
+      }
+    },
+    "optimized": {
+      "cost": {
+        "input_tokens": {
+          "count": 24,
+          "max": 6672.0,
+          "mean": 5732.375,
+          "median": 5649.5,
+          "min": 4892.0,
+          "range": 1780.0,
+          "total": 137577.0
+        },
+        "latency_ms": {
+          "count": 24,
+          "max": 66252.727,
+          "mean": 41733.059,
+          "median": 41286.375,
+          "min": 30065.989,
+          "range": 36186.738,
+          "total": 1001593.407
+        },
+        "model_calls": {
+          "count": 24,
+          "max": 8.0,
+          "mean": 7.167,
+          "median": 7.0,
+          "min": 6.0,
+          "range": 2.0,
+          "total": 172.0
+        },
+        "output_tokens": {
+          "count": 24,
+          "max": 2230.0,
+          "mean": 1563.583,
+          "median": 1505.5,
+          "min": 1156.0,
+          "range": 1074.0,
+          "total": 37526.0
+        }
+      },
+      "expected_normal_runs": 24,
+      "fault_recovery_rate": {
+        "denominator": 12,
+        "numerator": 6,
+        "value": 0.5
+      },
+      "faults_triggered": {
+        "denominator": 12,
+        "numerator": 11,
+        "value": 0.916667
+      },
+      "invalid_step_rate_macro": {
+        "denominator": 24,
+        "numerator": 0.0,
+        "numerator_semantics": "sum_of_per_case_invalid_step_rates",
+        "value": 0.0
+      },
+      "invalid_step_rate_micro": {
+        "denominator": 92,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "observed_normal_runs": 24,
+      "plan_executable_rate": {
+        "denominator": 24,
+        "numerator": 22,
+        "value": 0.916667
+      },
+      "reviewer_resolution_rate": {
+        "denominator": 3,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "task_completion_rate": {
+        "denominator": 24,
+        "numerator": 18,
+        "value": 0.75
+      },
+      "top1_root_cause_hit_rate": {
+        "denominator": 24,
+        "numerator": 21,
+        "value": 0.875
+      },
+      "unsupported_or_contradicted_claim_rate": {
+        "denominator": 56,
+        "numerator": 0,
+        "value": 0.0
+      }
+    }
+  }
+}

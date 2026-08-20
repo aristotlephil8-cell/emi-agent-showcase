@@ -1,0 +1,45 @@
+{
+  "fixture_kind": "DETERMINISTIC_REPLAY_ONLY",
+  "cases": {
+    "dev-power-001": {
+      "planner": {
+        "hypotheses": [{"hypothesis_id":"h-power-switching","statement":"开关纹波经电源线传导","rationale":"峰值位于 150 kHz 及其倍频"}],
+        "information_gaps": ["输入端干预前后变化"],
+        "steps": [{"step_id":"s1","hypothesis_id":"h-power-switching","tool":"compare_intervention","arguments":{"intervention_id":"add-input-cmc"},"depends_on":[],"completion_condition":"得到干预前后 dB 变化"}]
+      },
+      "diagnosis": {"root_causes":[{"cause_id":"power_input_filter_resonance","label":"DC/DC 输入滤波谐振","confidence":0.91,"evidence_ids":["{{evidence:s1}}"],"rationale":"受控干预使峰值下降超过 3 dB"}],"claims":[{"claim_id":"c1","text":"输入滤波干预支持开关纹波传导假设","evidence_ids":["{{evidence:s1}}"],"contradicted_by":[],"support_status":"supported"}],"confidence_boundary":"仅适用于该合成测量工况","status":"complete"},
+      "reviewer": {"issues":[],"needs_rework":false}
+    },
+    "dev-ground-002": {
+      "planner": {"hypotheses":[{"hypothesis_id":"h-common-impedance","statement":"机壳搭接共阻抗形成耦合","rationale":"接口参考地随负载变化"}],"information_gaps":["搭接路径是否共享回流"],"steps":[{"step_id":"s1","hypothesis_id":"h-common-impedance","tool":"inspect_coupling_path","arguments":{"path_id":"chassis-bond"},"depends_on":[],"completion_condition":"确认搭接路径是否具备共享回流条件"}]},
+      "diagnosis": {"root_causes":[{"cause_id":"shared_return_impedance","label":"机壳搭接共阻抗","confidence":0.88,"evidence_ids":["{{evidence:s1}}"],"rationale":"路径检查确认参考地与回流共享长搭接带"}],"claims":[{"claim_id":"c1","text":"共阻抗路径具备物理可行性","evidence_ids":["{{evidence:s1}}"],"contradicted_by":[],"support_status":"supported"}],"confidence_boundary":"未覆盖真实设备结构公差","status":"complete"},
+      "reviewer": {"issues":[],"needs_rework":false}
+    },
+    "dev-shield-003": {
+      "planner": {"hypotheses":[{"hypothesis_id":"h-shield-termination","statement":"屏蔽端接阻抗过高导致共模辐射","rationale":"360 度端接是直接干预"}],"information_gaps":["端接修改的峰值变化"],"steps":[{"step_id":"s1","hypothesis_id":"h-shield-termination","tool":"compare_intervention","arguments":{"intervention_id":"shield-360-bond"},"depends_on":[],"completion_condition":"得到 360 度端接前后变化"}]},
+      "diagnosis": {"root_causes":[{"cause_id":"shield_pigtail_inductance","label":"屏蔽尾辫电感过高","confidence":0.9,"evidence_ids":["{{evidence:s1}}"],"rationale":"端接修改后辐射峰下降"}],"claims":[{"claim_id":"c1","text":"屏蔽端接是当前首要候选根因","evidence_ids":["{{evidence:s1}}"],"contradicted_by":[],"support_status":"supported"}],"confidence_boundary":"未进行多姿态重复测量","status":"complete"},
+      "reviewer": {"issues":[],"needs_rework":false}
+    },
+    "dev-clock-004": {
+      "planner": {"hypotheses":[{"hypothesis_id":"h-clock","statement":"窄带峰来自 24 MHz 时钟谐波","rationale":"峰值接近整数倍频"}],"information_gaps":["峰值与时钟倍频对齐程度"],"steps":[{"step_id":"s1","hypothesis_id":"h-clock","tool":"match_frequency_signature","arguments":{"fundamental_mhz":24.0,"peak_key":"spectrum_peaks_mhz","tolerance_mhz":0.5},"depends_on":[],"completion_condition":"计算全部峰值的倍频匹配数量"}]},
+      "diagnosis": {"root_causes":[{"cause_id":"clock_harmonic_radiation","label":"24 MHz 时钟谐波辐射","confidence":0.93,"evidence_ids":["{{evidence:s1}}"],"rationale":"三个窄带峰均与整数倍频对齐"}],"claims":[{"claim_id":"c1","text":"频率特征支持时钟谐波假设","evidence_ids":["{{evidence:s1}}"],"contradicted_by":[],"support_status":"supported"}],"confidence_boundary":"频率对齐不能单独证明具体耦合路径","status":"complete"},
+      "reviewer": {"issues":[],"needs_rework":false}
+    },
+    "dev-filter-005": {
+      "planner": {"hypotheses":[{"hypothesis_id":"h-filter-return","statement":"接口滤波回流路径过长","rationale":"回流改接是直接干预"}],"information_gaps":["回流改接前后变化"],"steps":[{"step_id":"s1","hypothesis_id":"h-filter-return","tool":"compare_intervention","arguments":{"intervention_id":"shorten-filter-return"},"depends_on":[],"completion_condition":"得到回流改接前后 dB 变化"}]},
+      "diagnosis": {"root_causes":[{"cause_id":"interface_filter_placement","label":"接口滤波器布置不当","confidence":0.89,"evidence_ids":["{{evidence:s1}}"],"rationale":"缩短回流后峰值下降"}],"claims":[{"claim_id":"c1","text":"滤波回流修改支持首要候选根因","evidence_ids":["{{evidence:s1}}"],"contradicted_by":[],"support_status":"supported"}],"confidence_boundary":"仅验证该单一干预","status":"complete"},
+      "reviewer": {"issues":[],"needs_rework":false}
+    },
+    "dev-nearfield-006": {
+      "planner": {"hypotheses":[{"hypothesis_id":"h-nearfield","statement":"功率电感近场耦合进入采样环路","rationale":"采样噪声与功率节拍同步"}],"information_gaps":["耦合路径是否物理可行"],"steps":[{"step_id":"s1","hypothesis_id":"h-nearfield","tool":"query_measurement","arguments":{"key":"sample_noise_mv"},"depends_on":[],"completion_condition":"确认重复采样噪声量级"}]},
+      "diagnosis": [
+        {"root_causes":[{"cause_id":"near_field_inductive_coupling","label":"功率电感近场耦合","confidence":0.54,"evidence_ids":[],"rationale":"当前只有同步现象"}],"claims":[{"claim_id":"c1","text":"电感到采样环路的耦合路径成立","evidence_ids":[],"contradicted_by":[],"support_status":"unsupported"}],"confidence_boundary":"缺少耦合路径检查","status":"insufficient_evidence"},
+        {"root_causes":[{"cause_id":"near_field_inductive_coupling","label":"功率电感近场耦合","confidence":0.86,"evidence_ids":["{{evidence:s1}}"],"rationale":"定向返工确认环路位于边缘磁场区域"}],"claims":[{"claim_id":"c1","text":"电感到采样环路的耦合路径具备物理可行性","evidence_ids":["{{evidence:s1}}"],"contradicted_by":[],"support_status":"supported"}],"confidence_boundary":"未进行真实近场扫描","status":"complete"}
+      ],
+      "reviewer": [
+        {"issues":[{"issue_id":"r1","kind":"plan_gap","severity":"high","step_id":"s1","claim_id":"c1","message":"需要检查具体耦合路径","resolved":false,"required_tool":"inspect_coupling_path","required_arguments":{"path_id":"inductor-to-sense-loop"}}],"needs_rework":true},
+        {"issues":[],"needs_rework":false}
+      ]
+    }
+  }
+}
