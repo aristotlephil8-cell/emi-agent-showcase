@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="760" viewBox="0 0 1600 760" role="img" aria-labelledby="title desc">
+  <title id="title">EMI-Agent public V1 architecture</title>
+  <desc id="desc">A Planner routes an EMI case to parallel evidence workers, then diagnosis, review, report and engineer confirmation. Reviewer feedback has at most one targeted rework in public V1. Typed state, SQLite checkpoints and SSE trajectories support the workflow.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07131f"/>
+      <stop offset="1" stop-color="#0b2032"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#69e5dc"/>
+      <stop offset="1" stop-color="#2eb8d4"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#69e5dc"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#f6bd60"/>
+    </marker>
+    <style>
+      .eyebrow { fill:#69e5dc; font:600 13px 'Segoe UI',Arial,sans-serif; letter-spacing:2.4px; }
+      .title { fill:#f0f7ff; font:700 23px 'Segoe UI',Arial,sans-serif; }
+      .body { fill:#9fb4c7; font:400 14px 'Segoe UI',Arial,sans-serif; }
+      .caption { fill:#7790a8; font:600 12px 'Segoe UI',Arial,sans-serif; letter-spacing:1.3px; }
+      .small { fill:#c8d6e4; font:400 12px 'Segoe UI',Arial,sans-serif; }
+      .box { fill:#0d1d2d; stroke:#25465f; stroke-width:1.3; }
+      .node { fill:#10263a; stroke:#3f8199; stroke-width:1.4; }
+      .worker { fill:#0f2b3c; stroke:#38768a; stroke-width:1; }
+      .rail { fill:#0b1a29; stroke:#1c3b54; stroke-width:1; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="760" fill="url(#bg)" rx="28"/>
+  <rect x="34" y="30" width="1532" height="70" rx="15" class="rail"/>
+  <circle cx="72" cy="65" r="7" fill="url(#accent)" filter="url(#glow)"/>
+  <text x="94" y="60" class="eyebrow">EMI-AGENT · PUBLIC V1 EXECUTION FLOW</text>
+  <text x="94" y="83" class="body">Evidence-grounded multi-Agent decision support with a human engineering decision boundary</text>
+  <rect x="1325" y="48" width="202" height="34" rx="17" fill="#173b47" stroke="#398b98"/>
+  <text x="1426" y="70" text-anchor="middle" class="caption" fill="#9bf0e8">LANGGRAPH · ASTREAM</text>
+
+  <text x="62" y="144" class="eyebrow">01 · EXECUTION GRAPH</text>
+  <text x="62" y="174" class="title">From case intake to engineer confirmation</text>
+  <text x="62" y="198" class="body">The optimized profile fans out evidence work in parallel, then reviews only the affected path.</text>
+
+  <path d="M 205 330 H 246" stroke="#69e5dc" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 436 330 H 477" stroke="#69e5dc" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 647 330 H 687" stroke="#69e5dc" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 963 330 H 1003" stroke="#69e5dc" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 1193 330 H 1233" stroke="#69e5dc" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 1423 330 H 1463" stroke="#69e5dc" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <g transform="translate(62 262)">
+    <rect width="143" height="136" rx="14" class="box"/>
+    <text x="18" y="31" class="eyebrow">INPUT</text>
+    <text x="18" y="66" class="title">EMI case</text>
+    <text x="18" y="92" class="body">Public case text</text>
+    <text x="18" y="113" class="body">and tool schema</text>
+  </g>
+
+  <g transform="translate(246 242)">
+    <rect width="190" height="176" rx="14" class="node"/>
+    <text x="20" y="32" class="eyebrow">PLANNER AGENT</text>
+    <text x="20" y="70" class="title">Plan the work</text>
+    <text x="20" y="100" class="body">Hypotheses · gaps</text>
+    <text x="20" y="122" class="body">Steps · dependencies</text>
+    <text x="20" y="144" class="body">Completion conditions</text>
+  </g>
+
+  <g transform="translate(477 242)">
+    <rect width="170" height="176" rx="14" class="node"/>
+    <text x="19" y="32" class="eyebrow">ROUTER</text>
+    <text x="19" y="70" class="title">Route evidence</text>
+    <text x="19" y="101" class="body">Bind arguments</text>
+    <text x="19" y="123" class="body">Stable operation ID</text>
+    <text x="19" y="145" class="body">Dispatch with Send</text>
+  </g>
+
+  <g transform="translate(687 222)">
+    <rect width="276" height="216" rx="16" class="node"/>
+    <text x="20" y="33" class="eyebrow">EVIDENCE WORKERS × N</text>
+    <text x="20" y="62" class="title">Collect in parallel</text>
+    <rect x="18" y="83" width="240" height="31" rx="7" class="worker"/>
+    <text x="31" y="104" class="small">Measurement &amp; consistency checks</text>
+    <rect x="18" y="123" width="240" height="31" rx="7" class="worker"/>
+    <text x="31" y="144" class="small">Frequency signature matching</text>
+    <rect x="18" y="163" width="240" height="31" rx="7" class="worker"/>
+    <text x="31" y="184" class="small">Intervention &amp; coupling-path checks</text>
+  </g>
+
+  <g transform="translate(1003 242)">
+    <rect width="190" height="176" rx="14" class="node"/>
+    <text x="20" y="32" class="eyebrow">DIAGNOSIS AGENT</text>
+    <text x="20" y="70" class="title">Rank causes</text>
+    <text x="20" y="101" class="body">Atomic claims</text>
+    <text x="20" y="123" class="body">Evidence / counter-evidence</text>
+    <text x="20" y="145" class="body">Confidence boundary</text>
+  </g>
+
+  <g transform="translate(1233 242)">
+    <rect width="190" height="176" rx="14" class="node"/>
+    <text x="20" y="32" class="eyebrow">REVIEWER AGENT</text>
+    <text x="20" y="70" class="title">Check grounding</text>
+    <text x="20" y="101" class="body">Gaps · conflicts</text>
+    <text x="20" y="123" class="body">Unsupported claims</text>
+    <text x="20" y="145" class="body">One targeted rework</text>
+  </g>
+
+  <g transform="translate(1463 262)">
+    <rect width="103" height="136" rx="14" class="box"/>
+    <text x="17" y="31" class="eyebrow">OUTPUT</text>
+    <text x="17" y="65" class="title">Report</text>
+    <text x="17" y="91" class="body">Deterministic</text>
+    <text x="17" y="112" class="body">formatting</text>
+  </g>
+
+  <path d="M 1328 438 V 490 H 562 V 418" fill="none" stroke="#f6bd60" stroke-width="2" stroke-dasharray="7 7" marker-end="url(#arrow-amber)"/>
+  <rect x="782" y="472" width="322" height="38" rx="19" fill="#3d3020" stroke="#d79a45"/>
+  <text x="943" y="496" text-anchor="middle" class="caption" fill="#ffd99a">REVIEW FEEDBACK · TARGETED REWORK ONLY</text>
+
+  <path d="M 1515 398 V 515" stroke="#69e5dc" stroke-width="2" marker-end="url(#arrow)"/>
+  <g transform="translate(1385 530)">
+    <rect width="181" height="93" rx="14" fill="#153942" stroke="#55c8bf" stroke-width="1.5"/>
+    <text x="18" y="30" class="eyebrow">HUMAN IN THE LOOP</text>
+    <text x="18" y="61" class="title">Engineer decision</text>
+    <text x="18" y="80" class="small">Accept · modify · reject</text>
+  </g>
+
+  <rect x="62" y="654" width="1504" height="66" rx="14" class="rail"/>
+  <g transform="translate(88 674)">
+    <circle cx="8" cy="8" r="5" fill="#69e5dc"/>
+    <text x="24" y="12" class="caption">TYPED GRAPH STATE</text>
+    <text x="24" y="32" class="small">Partial updates · reducer merge · stable IDs</text>
+  </g>
+  <g transform="translate(600 674)">
+    <circle cx="8" cy="8" r="5" fill="#f6bd60"/>
+    <text x="24" y="12" class="caption">SQLITE CHECKPOINTS</text>
+    <text x="24" y="32" class="small">Resume proof · duplicate suppression</text>
+  </g>
+  <g transform="translate(1103 674)">
+    <circle cx="8" cy="8" r="5" fill="#8aa5ff"/>
+    <text x="24" y="12" class="caption">SSE TRAJECTORY</text>
+    <text x="24" y="32" class="small">Node events · evidence · review trace</text>
+  </g>
+</svg>
